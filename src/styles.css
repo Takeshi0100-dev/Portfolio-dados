@@ -1,0 +1,284 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system — Portfólio João Victor
+ * Dark, minimal, graphite surfaces with blue as the single accent.
+ * All colors in oklch. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --background: oklch(0.16 0.006 250);
+  --foreground: oklch(0.97 0.002 250);
+
+  --surface: oklch(0.2 0.007 250);
+  --surface-raised: oklch(0.235 0.008 250);
+
+  --card: oklch(0.2 0.007 250);
+  --card-foreground: oklch(0.97 0.002 250);
+
+  --popover: oklch(0.2 0.007 250);
+  --popover-foreground: oklch(0.97 0.002 250);
+
+  --primary: oklch(0.65 0.16 252);
+  --primary-foreground: oklch(0.15 0.01 250);
+
+  --secondary: oklch(0.24 0.008 250);
+  --secondary-foreground: oklch(0.95 0.002 250);
+
+  --muted: oklch(0.24 0.008 250);
+  --muted-foreground: oklch(0.7 0.012 250);
+
+  --accent: oklch(0.65 0.16 252);
+  --accent-foreground: oklch(0.15 0.01 250);
+
+  --destructive: oklch(0.6 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(1 0 0 / 9%);
+  --border-strong: oklch(1 0 0 / 16%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.65 0.16 252);
+
+  --shadow-soft: 0 1px 2px oklch(0 0 0 / 40%), 0 12px 40px -24px oklch(0 0 0 / 80%);
+  --transition-smooth: 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* Reveal on scroll */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+
+  &[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility section-shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 76rem;
+  padding-inline: 1.25rem;
+
+  @media (width >= 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+@utility grid-backdrop {
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 4%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 4%) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent 75%);
+}
+
+@utility card-surface {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color var(--transition-smooth),
+    background-color var(--transition-smooth),
+    transform var(--transition-smooth);
+
+  &:hover {
+    border-color: color-mix(in oklab, var(--primary) 45%, transparent);
+    background-color: var(--surface-raised);
+    transform: translateY(-2px);
+  }
+}
+
+/* Prompt 4 — visual refinement */
+@utility section-rule {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong) 18%, var(--border-strong) 82%, transparent);
+  }
+}
+
+@utility soft-glow {
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 7%, transparent),
+    0 28px 90px -55px color-mix(in oklab, var(--primary) 48%, transparent);
+}
+
+@layer base {
+  body {
+    background-image: radial-gradient(circle at 50% -10%, color-mix(in oklab, var(--primary) 7%, transparent), transparent 34rem);
+    background-attachment: fixed;
+  }
+}
+
+
+/* Prompt 5 — mobile review */
+@layer base {
+  html, body {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  img, svg, video, canvas, iframe {
+    max-width: 100%;
+  }
+
+  p, li, h1, h2, h3, h4, a, button {
+    overflow-wrap: break-word;
+  }
+}
+
+.mobile-scroll {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.mobile-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 374px) {
+  .section-shell {
+    padding-inline: 1rem;
+  }
+}
+
+@media (pointer: coarse) {
+  a, button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Prompt 6 — accessibility and performance finishing */
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 0.75rem;
+  z-index: 100;
+  transform: translateY(-160%);
+  border-radius: 0.5rem;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.65rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: transform 160ms ease;
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (content-visibility: auto) {
+    main > section:not(:first-child) {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 760px;
+    }
+  }
+}

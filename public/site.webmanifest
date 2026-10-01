@@ -1,0 +1,11 @@
+{
+  "name": "João Victor — Dados & Business Intelligence",
+  "short_name": "João Victor",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#17191d",
+  "theme_color": "#17191d",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
