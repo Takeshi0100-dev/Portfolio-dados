@@ -282,3 +282,25 @@
     }
   }
 }
+
+
+/* Subtle ambient motion for the test branch */
+@keyframes ambient-drift {
+  0%, 100% { transform: translate3d(-50%, 0, 0) scale(1); opacity: .7; }
+  50% { transform: translate3d(calc(-50% + 28px), 18px, 0) scale(1.06); opacity: 1; }
+}
+@keyframes grid-drift {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 64px 32px, 32px 64px; }
+}
+@keyframes panel-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.hero-grid-motion { animation: grid-drift 30s linear infinite; }
+.hero-ambient-motion { animation: ambient-drift 12s ease-in-out infinite; }
+.hero-panel-motion { animation: panel-float 7s ease-in-out infinite; }
+.hero-lower-card { animation: panel-float 8s ease-in-out infinite; animation-delay: -3s; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-grid-motion, .hero-ambient-motion, .hero-panel-motion, .hero-lower-card { animation: none !important; }
+}
