@@ -400,3 +400,78 @@ section[id] h2 {
   }
 }
 
+/* Project gallery transitions */
+@keyframes project-enter {
+  from { opacity: 0; transform: translateY(28px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes project-sheen {
+  0% { transform: translateX(-150%) skewX(-18deg); opacity: 0; }
+  20% { opacity: .18; }
+  55%, 100% { transform: translateX(220%) skewX(-18deg); opacity: 0; }
+}
+.project-card {
+  animation: project-enter 780ms cubic-bezier(.2, .8, .2, 1) both;
+  transition: border-color 360ms ease, box-shadow 360ms ease, transform 360ms cubic-bezier(.2, .8, .2, 1);
+  transform: translateZ(0);
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 70px -42px color-mix(in oklab, var(--primary) 68%, transparent);
+}
+.project-cover-frame {
+  isolation: isolate;
+}
+.project-cover-frame::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset-block: 0;
+  left: 0;
+  width: 42%;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent, color-mix(in oklab, var(--primary) 20%, transparent), transparent);
+  transform: translateX(-150%) skewX(-18deg);
+  opacity: 0;
+}
+.project-card:hover .project-cover-frame::after {
+  animation: project-sheen 950ms ease-out both;
+}
+.project-cover {
+  will-change: transform;
+  transition: transform 850ms cubic-bezier(.2, .8, .2, 1), filter 650ms ease;
+}
+.project-card:hover .project-cover {
+  filter: saturate(1.08) contrast(1.025);
+}
+.project-card h3 {
+  transition: color 320ms ease, transform 320ms ease;
+}
+.project-card:hover h3 {
+  color: var(--primary);
+  transform: translateX(3px);
+}
+.project-card li {
+  transition: border-color 280ms ease, color 280ms ease, background-color 280ms ease, transform 280ms ease;
+}
+.project-card:hover li {
+  border-color: color-mix(in oklab, var(--primary) 35%, transparent);
+}
+.project-card li:hover {
+  transform: translateY(-2px);
+  background-color: color-mix(in oklab, var(--primary) 9%, transparent);
+  color: var(--foreground);
+}
+.project-card a[href] svg {
+  transition: transform 300ms cubic-bezier(.2, .8, .2, 1);
+}
+.project-card a[href]:hover svg {
+  transform: translateX(4px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card { animation: none !important; transition: none !important; }
+  .project-card:hover { transform: none; }
+  .project-card:hover .project-cover-frame::after { animation: none !important; }
+  .project-cover, .project-card h3, .project-card li { transition: none !important; }
+}
+
