@@ -107,9 +107,10 @@ function HeroVisual() {
           {bars.map((h, i) => (
             <div
               key={i}
-              className="flex-1 rounded-sm bg-primary/25"
+              className="hero-chart-bar flex-1 rounded-sm bg-primary/25"
               style={{
                 height: `${h}%`,
+                "--bar-index": i,
                 background:
                   i === bars.length - 2
                     ? "color-mix(in oklab, var(--primary) 80%, transparent)"
