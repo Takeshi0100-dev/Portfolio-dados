@@ -470,3 +470,26 @@ section[id] h2 { animation: heading-glow 7s ease-in-out infinite; }
 @keyframes project-preview-in { from { opacity: .45; transform: scale(.99); } to { opacity: 1; transform: scale(1); } }
 @media (max-width: 420px) { .project-preview-arrow { width: 2rem; height: 2rem; } .project-preview-arrow.left-3 { left: .45rem; } .project-preview-arrow.right-3 { right: .45rem; } }
 @media (prefers-reduced-motion: reduce) { .project-preview-image { animation: none; } .project-preview-arrow, .project-preview-dot { transition: none; } }
+
+
+/* Make preview navigation unmistakable on project covers. */
+.project-cover-preview .project-preview-arrow {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  width: 2.75rem;
+  height: 2.75rem;
+  background: rgba(15, 35, 63, .96);
+  border: 2px solid rgba(96, 165, 250, .9);
+  color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(5, 11, 22, .55), 0 8px 24px rgba(0, 0, 0, .5);
+}
+.project-cover-preview .project-preview-arrow.left-3 { left: .75rem; }
+.project-cover-preview .project-preview-arrow.right-3 { right: .75rem; }
+.project-cover-preview .project-preview-arrow svg { width: 1.35rem; height: 1.35rem; stroke-width: 3; }
+.project-cover-preview .project-preview-dots { bottom: .75rem; }
+@media (max-width: 640px) {
+  .project-cover-preview .project-preview-arrow { width: 2.35rem; height: 2.35rem; }
+  .project-cover-preview .project-preview-arrow.left-3 { left: .4rem; }
+  .project-cover-preview .project-preview-arrow.right-3 { right: .4rem; }
+}
