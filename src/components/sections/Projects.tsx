@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, BriefcaseBusiness, GraduationCap, Workflow, Database, ChartNoAxesCombined } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
@@ -30,18 +31,6 @@ export function Projects() {
 
   const projectTypeIcon = (slug: string) =>
     realProjects.includes(slug) ? BriefcaseBusiness : GraduationCap;
-
-  const capabilities = lang === "pt"
-    ? [
-        { title: "Análise", description: "Transformar dados em insights", Icon: ChartNoAxesCombined },
-        { title: "Modelagem", description: "Estruturar dados confiáveis", Icon: Database },
-        { title: "Automação", description: "Reduzir tarefas manuais", Icon: Workflow },
-      ]
-    : [
-        { title: "Analytics", description: "Turn data into insights", Icon: ChartNoAxesCombined },
-        { title: "Data modeling", description: "Build reliable data structures", Icon: Database },
-        { title: "Automation", description: "Reduce repetitive tasks", Icon: Workflow },
-      ];
 
   return (
     <section id="projects" className="scroll-mt-24 section-rule py-20 md:py-28">
@@ -95,11 +84,28 @@ export function Projects() {
           </Reveal>
         )}
 
-        <div className="mt-8 grid gap-5 md:grid-cols-2">
+        <div className="mt-8 grid items-stretch gap-5 md:grid-cols-2">
           {secondary.map((project, index) => {
             const TypeIcon = projectTypeIcon(project.slug);
             return (
-              <Reveal key={project.slug} delay={index * 90}>
+              <Fragment key={project.slug}>
+                {project.slug === "acompanhamento-vendas" && (
+                  <Reveal delay={index * 90}>
+                    <article className="project-card card-surface flex h-full min-h-64 flex-col justify-between overflow-hidden border-primary/20 p-6 sm:p-8">
+                      <div>
+                        <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-primary">{lang === "pt" ? "Minha abordagem" : "My approach"}</p>
+                        <h3 className="mt-4 max-w-sm text-2xl font-semibold leading-tight text-foreground">{lang === "pt" ? "Do problema à solução." : "From problem to solution."}</h3>
+                        <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">{lang === "pt" ? "Cada projeto começa entendendo a necessidade, organizando os dados e criando indicadores que ajudam a tomar decisões." : "Every project starts by understanding the need, organizing data, and building metrics that support better decisions."}</p>
+                      </div>
+                      <div className="mt-8 grid grid-cols-3 gap-2 border-t border-border pt-5">
+                        <div className="space-y-2"><Database className="size-4 text-primary" /><p className="text-xs font-medium text-foreground">{lang === "pt" ? "Estruturar" : "Structure"}</p></div>
+                        <div className="space-y-2"><ChartNoAxesCombined className="size-4 text-primary" /><p className="text-xs font-medium text-foreground">{lang === "pt" ? "Analisar" : "Analyze"}</p></div>
+                        <div className="space-y-2"><Workflow className="size-4 text-primary" /><p className="text-xs font-medium text-foreground">{lang === "pt" ? "Otimizar" : "Optimize"}</p></div>
+                      </div>
+                    </article>
+                  </Reveal>
+                )}
+                <Reveal key={project.slug} delay={index * 90}>
                 <article className="project-card project-card-secondary card-surface group h-full overflow-hidden">
                   <div className="project-cover-frame project-cover-secondary relative aspect-[16/9] overflow-hidden border-b border-border">
                     <img src={covers[project.slug]} alt={`${project.name[lang]} — ${t.projects.title}`} loading="lazy" decoding="async" width={1280} height={800} className="project-cover size-full object-contain transition-transform duration-700 group-hover:scale-[1.025]" />
@@ -122,40 +128,11 @@ export function Projects() {
                   </div>
                 </article>
               </Reveal>
+              </Fragment>
             );
           })}
         </div>
 
-        <Reveal delay={120}>
-          <div className="mt-14 border-t border-border pt-8 md:mt-16 md:pt-10">
-            <div className="mb-7 max-w-2xl">
-              <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-primary">
-                {lang === "pt" ? "Do dado à decisão" : "From data to decisions"}
-              </p>
-              <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-                {lang === "pt" ? "Cada projeto resolve um problema." : "Every project solves a problem."}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {lang === "pt"
-                  ? "Análise, estrutura e tecnologia trabalhando juntas para apoiar decisões melhores."
-                  : "Analytics, structure, and technology working together to support better decisions."}
-              </p>
-            </div>
-            <div className="grid gap-5 sm:grid-cols-3 sm:gap-6">
-              {capabilities.map(({ title, description, Icon }, index) => (
-                <div key={title} className="group/capability flex gap-3 border-l border-primary/35 pl-4 py-2 transition-colors duration-300 hover:border-primary">
-                  <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/5 text-primary transition-colors duration-300 group-hover/capability:bg-primary/10">
-                    <Icon className="size-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-foreground">{title}</h4>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
