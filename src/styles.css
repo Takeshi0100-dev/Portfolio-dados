@@ -389,3 +389,15 @@ section[id] h2 { animation: heading-glow 7s ease-in-out infinite; }
     margin-top: 0;
   }
 }
+
+
+/* Desktop: pin the code card's bottom edge to the certifications link baseline. */
+@media (min-width: 1024px) {
+  #education .section-shell { align-items: stretch; }
+  #education .section-shell > div:first-child {
+    margin-top: 0;
+    min-height: 100%;
+  }
+  #education .section-shell > div:first-child > .max-w-2xl { margin-top: 0; }
+  #education .education-code-visual { margin-top: auto; }
+}
