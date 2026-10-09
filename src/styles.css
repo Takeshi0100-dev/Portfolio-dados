@@ -537,3 +537,92 @@ section[id] h2 { animation: heading-glow 7s ease-in-out infinite; }
   .project-cover-frame > .project-cover-preview .project-preview-arrow.left-3 { left: .4rem !important; }
   .project-cover-frame > .project-cover-preview .project-preview-arrow.right-3 { right: .4rem !important; }
 }
+
+/* ==========================================================
+   Education layout (single source of truth)
+   - Desktop: duas colunas com a MESMA altura (stretch).
+     Topo: título/eyebrow alinhado ao topo do card da direita.
+     Base: caixa do terminal (esquerda) alinhada com o link
+     "Explorar certificações" (direita).
+   - Mobile/tablet: uma coluna, empilhado normalmente.
+   ========================================================== */
+#education .section-shell > div:first-child,
+#education .section-shell > div:last-child { min-width: 0; }
+
+#education .education-code-visual {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  transform: none;
+}
+
+@media (min-width: 1024px) {
+  #education .section-shell {
+    grid-template-columns: minmax(19rem, .78fr) minmax(0, 1.22fr);
+    column-gap: clamp(2.5rem, 4vw, 4.5rem);
+    align-items: stretch;
+  }
+
+  /* Coluna esquerda: título em cima, terminal colado embaixo */
+  #education .section-shell > div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0; /* o espaçamento vem do space-y-8 do JSX */
+  }
+
+  /* Coluna direita: card + texto em cima, link colado embaixo */
+  #education .section-shell > div:last-child {
+    display: flex;
+    flex-direction: column;
+  }
+  #education .section-shell > div:last-child > :last-child {
+    margin-top: auto;
+    padding-top: 1.5rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  #education .section-shell { align-items: start; gap: 2rem; }
+  #education .education-code-visual { max-width: 32rem; }
+}
+
+/* Final alignment: align the terminal footer text with the certificates link row. */
+@media (min-width: 1024px) {
+  #education .section-shell {
+    align-items: stretch;
+  }
+
+  #education .section-shell > div:first-child {
+    justify-content: space-between;
+    min-height: 100%;
+  }
+
+  /* Tailwind's space-y-8 adds margins that otherwise defeat space-between. */
+  #education .section-shell > div:first-child > * {
+    margin-block-start: 0;
+  }
+
+  #education .section-shell > div:first-child > div:last-child {
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+
+  #education .section-shell > div:first-child > div:last-child > .education-code-visual {
+    margin: 0;
+    transform: none;
+  }
+
+  #education .section-shell > div:last-child {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  /* Push the entire CTA Reveal row to the same lower edge as the terminal. */
+  #education .section-shell > div:last-child > div:last-child {
+    margin-top: auto;
+    padding-top: 1.5rem;
+  }
+}
+
