@@ -5,17 +5,7 @@ import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { useLanguage } from "@/lib/language";
 import { projects } from "@/content/site";
-import coverDashboardJuridico from "@/assets/dashboard-juridico-home.png";
-import coverXSales from "@/assets/xsales-desktop.png";
-import coverSales from "@/assets/acompanhamento-vendas.png";
-import coverFuel from "@/assets/gestao-abastecimentos.png";
-
-const covers: Record<string, string> = {
-  "dashboard-juridico": coverDashboardJuridico,
-  "analise-vendas-xsales": coverXSales,
-  "acompanhamento-vendas": coverSales,
-  "gestao-abastecimentos": coverFuel,
-};
+import { ProjectArtwork } from "@/components/sections/ProjectArtwork";
 
 export function Projects() {
   const { lang, t } = useLanguage();
@@ -52,7 +42,7 @@ export function Projects() {
             <article className="project-card project-card-featured card-surface group mt-8 overflow-hidden border-primary/25">
               <div className="grid lg:grid-cols-[1.08fr_0.92fr]">
                 <div className="project-cover-frame project-cover-featured relative aspect-[16/10] overflow-hidden border-b border-border lg:aspect-auto lg:min-h-[25rem] lg:border-b-0 lg:border-r">
-                  <img src={covers[featured.slug]} alt={`${featured.name[lang]} — ${t.projects.title}`} loading="lazy" decoding="async" width={1280} height={800} className="project-cover size-full object-contain transition-transform duration-700 group-hover:scale-[1.025]" />
+                  <ProjectArtwork slug={featured.slug} lang={lang} title={`${featured.name[lang]} — ${t.projects.title}`} />
                   <span className="project-image-label">{lang === "pt" ? "CASE EM DESTAQUE" : "FEATURED CASE"}</span>
                 </div>
 
@@ -132,7 +122,7 @@ export function Projects() {
                 <Reveal key={project.slug} delay={index * 90}>
                 <article className="project-card project-card-secondary card-surface group h-full overflow-hidden">
                   <div className="project-cover-frame project-cover-secondary relative aspect-[16/9] overflow-hidden border-b border-border">
-                    <img src={covers[project.slug]} alt={`${project.name[lang]} — ${t.projects.title}`} loading="lazy" decoding="async" width={1280} height={800} className="project-cover size-full object-contain transition-transform duration-700 group-hover:scale-[1.025]" />
+                    <ProjectArtwork slug={project.slug} lang={lang} title={`${project.name[lang]} — ${t.projects.title}`} />
                     <span className="project-image-label">{projectType(project.slug)}</span>
                   </div>
                   <div className="flex h-full flex-col gap-4 p-5 sm:p-6">
