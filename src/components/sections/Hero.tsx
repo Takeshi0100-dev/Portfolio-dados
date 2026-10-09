@@ -1,6 +1,7 @@
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, ChartNoAxesCombined } from "lucide-react";
 import { useLanguage } from "@/lib/language";
 import { LINKEDIN_URL } from "@/content/site";
+import { InteractiveWordmark } from "@/components/sections/InteractiveWordmark";
 
 export function Hero() {
   const { t } = useLanguage();
@@ -10,17 +11,19 @@ export function Hero() {
       id="hero"
       className="relative flex min-h-[88svh] items-center overflow-hidden pb-16 pt-24 sm:min-h-[92vh] sm:pb-20 sm:pt-28 md:min-h-screen md:pt-32"
     >
-      <div aria-hidden className="grid-backdrop pointer-events-none absolute inset-0" />
+      <div aria-hidden className="grid-backdrop hero-grid-motion pointer-events-none absolute inset-0" />
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]"
+        className="hero-ambient-motion pointer-events-none absolute -top-40 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]"
       />
 
       <div className="section-shell relative">
         <div className="grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
+            <InteractiveWordmark />
+
             <p
-              className="eyebrow animate-fade-in"
+              className="eyebrow mt-5 animate-fade-in"
               style={{ animationDelay: "40ms", animationFillMode: "backwards" }}
             >
               {t.hero.role}
@@ -79,6 +82,7 @@ export function Hero() {
 }
 
 function HeroVisual() {
+  const { lang } = useLanguage();
   const bars = [38, 56, 44, 72, 60, 88, 76];
 
   return (
@@ -87,7 +91,7 @@ function HeroVisual() {
       className="relative hidden animate-fade-in lg:block"
       style={{ animationDelay: "520ms", animationFillMode: "backwards" }}
     >
-      <div className="card-surface soft-glow p-6">
+      <div className="card-surface hero-panel-motion soft-glow p-6">
         <div className="flex items-center justify-between">
           <span className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted-foreground">
             pipeline
@@ -103,9 +107,10 @@ function HeroVisual() {
           {bars.map((h, i) => (
             <div
               key={i}
-              className="flex-1 rounded-sm bg-primary/25"
+              className="hero-chart-bar flex-1 rounded-sm bg-primary/25"
               style={{
                 height: `${h}%`,
+                animationDelay: `${i * 90 + 180}ms`,
                 background:
                   i === bars.length - 2
                     ? "color-mix(in oklab, var(--primary) 80%, transparent)"
@@ -127,12 +132,23 @@ function HeroVisual() {
         </div>
       </div>
 
-      <div className="card-surface mt-4 flex items-center gap-4 p-4">
-        <div className="size-9 rounded-md border border-border bg-surface-raised" />
-        <div className="flex-1 space-y-2">
-          <div className="h-1.5 w-2/3 rounded-full bg-border-strong" />
-          <div className="h-1.5 w-1/3 rounded-full bg-primary/50" />
+      <div className="card-surface hero-lower-card mt-4 flex items-center gap-4 p-4">
+        <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 text-primary">
+          <ChartNoAxesCombined className="size-5" />
         </div>
+        <div className="min-w-0 flex-1">
+          <p className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-primary">
+            {lang === "pt" ? "Do dado à decisão" : "From data to decisions"}
+          </p>
+          <p className="mt-1 text-sm font-medium text-foreground">
+            {lang === "pt"
+              ? "Indicadores claros, soluções práticas"
+              : "Clear metrics, practical solutions"}
+          </p>
+        </div>
+        <span className="hidden rounded-full border border-border px-2 py-1 font-mono text-[0.55rem] tracking-wider text-muted-foreground sm:inline">
+          BI / DATA
+        </span>
       </div>
     </div>
   );
