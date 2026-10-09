@@ -31,6 +31,18 @@ export function Projects() {
   const projectTypeIcon = (slug: string) =>
     realProjects.includes(slug) ? BriefcaseBusiness : GraduationCap;
 
+  const capabilities = lang === "pt"
+    ? [
+        { title: "Análise", description: "Transformar dados em insights", Icon: ChartNoAxesCombined },
+        { title: "Modelagem", description: "Estruturar dados confiáveis", Icon: Database },
+        { title: "Automação", description: "Reduzir tarefas manuais", Icon: Workflow },
+      ]
+    : [
+        { title: "Analytics", description: "Turn data into insights", Icon: ChartNoAxesCombined },
+        { title: "Data modeling", description: "Build reliable data structures", Icon: Database },
+        { title: "Automation", description: "Reduce repetitive tasks", Icon: Workflow },
+      ];
+
   return (
     <section id="projects" className="scroll-mt-24 section-rule py-20 md:py-28">
       <div className="section-shell">
@@ -113,6 +125,37 @@ export function Projects() {
             );
           })}
         </div>
+
+        <Reveal delay={120}>
+          <div className="mt-14 border-t border-border pt-8 md:mt-16 md:pt-10">
+            <div className="mb-7 max-w-2xl">
+              <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-primary">
+                {lang === "pt" ? "Do dado à decisão" : "From data to decisions"}
+              </p>
+              <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+                {lang === "pt" ? "Cada projeto resolve um problema." : "Every project solves a problem."}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {lang === "pt"
+                  ? "Análise, estrutura e tecnologia trabalhando juntas para apoiar decisões melhores."
+                  : "Analytics, structure, and technology working together to support better decisions."}
+              </p>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-3 sm:gap-6">
+              {capabilities.map(({ title, description, Icon }, index) => (
+                <div key={title} className="group/capability flex gap-3 border-l border-primary/35 pl-4 py-2 transition-colors duration-300 hover:border-primary">
+                  <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/5 text-primary transition-colors duration-300 group-hover/capability:bg-primary/10">
+                    <Icon className="size-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground">{title}</h4>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
