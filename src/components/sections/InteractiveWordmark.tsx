@@ -24,6 +24,7 @@ export function InteractiveWordmark() {
     let height = 128;
     let dpr = 1;
     let start = performance.now();
+    let ready = false;
 
     const handles: Point[] = [
       { x: 0.18, y: 0.42 },
@@ -63,10 +64,13 @@ export function InteractiveWordmark() {
           if (pixels[index] > 75) dots.push({ x, y, alpha: pixels[index] / 255 });
         }
       }
+      ready = true;
+      start = performance.now();
     };
 
     const draw = (now: number) => {
       const elapsed = (now - start) / 1000;
+      const reveal = reducedMotion ? 1 : clamp(elapsed / 0.95, 0, 1);
       context.clearRect(0, 0, width, height);
 
       // Subtle coordinate grid behind the wordmark.
@@ -83,6 +87,10 @@ export function InteractiveWordmark() {
 
       const radius = 82;
       for (const dot of dots) {
+        // Reveal the lettering from left to right instead of popping in all at once.
+        const revealEdge = reveal * (width + 34) - 17;
+        if (dot.x > revealEdge) continue;
+
         const dx = dot.x - pointer.x;
         const dy = dot.y - pointer.y;
         const distance = Math.hypot(dx, dy);
@@ -178,7 +186,7 @@ export function InteractiveWordmark() {
     };
 
     build();
-    draw(performance.now());
+    if (ready) draw(performance.now());
     const observer = new ResizeObserver(() => {
       build();
       if (reducedMotion) draw(performance.now());
