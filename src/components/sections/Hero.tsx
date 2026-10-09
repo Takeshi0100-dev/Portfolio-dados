@@ -110,7 +110,7 @@ function HeroVisual() {
               className="hero-chart-bar flex-1 rounded-sm bg-primary/25"
               style={{
                 height: `${h}%`,
-                "--bar-index": i,
+                animationDelay: `${i * 90 + 180}ms`,
                 background:
                   i === bars.length - 2
                     ? "color-mix(in oklab, var(--primary) 80%, transparent)"
