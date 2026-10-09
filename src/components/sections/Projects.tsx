@@ -31,16 +31,16 @@ export function Projects() {
         <div className="mt-12 grid gap-6">
           {projects.map((project, index) => (
             <Reveal key={project.slug} delay={index * 90}>
-              <article className="card-surface soft-glow group overflow-hidden border-primary/20">
+              <article className="project-card card-surface soft-glow group overflow-hidden border-primary/20" style={{ animationDelay: `${index * 120}ms` }}>
                 <div className="grid lg:grid-cols-2">
-                  <div className="relative aspect-[16/10] overflow-hidden border-b border-border lg:aspect-auto lg:min-h-[26rem] lg:border-b-0 lg:border-r">
+                  <div className="project-cover-frame relative aspect-[16/10] overflow-hidden border-b border-border lg:aspect-auto lg:min-h-[26rem] lg:border-b-0 lg:border-r">
                     <img
                       src={covers[project.slug]}
                       alt={`${project.name[lang]} — ${t.projects.title}`}
                       loading="lazy"
                       width={1280}
                       height={800}
-                      className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                      className="project-cover size-full object-cover transition-transform duration-700 group-hover:scale-[1.055]"
                     />
                   </div>
 
