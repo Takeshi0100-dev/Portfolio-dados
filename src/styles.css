@@ -302,3 +302,16 @@ section[id] h2 { animation: heading-glow 7s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) {
   .education-code-lines .education-code-typed { width: auto !important; animation: none !important; border-right: 0; }
 }
+
+
+/* Layout alignment refinements */
+#about .section-shell { align-items: start; }
+#about .about-copy { padding-top: 0; margin-top: 0; max-width: 42rem; gap: 1.15rem; }
+#about .about-copy-paragraph { margin: 0; font-size: clamp(1rem, 1.05vw, 1.1rem); line-height: 1.85; letter-spacing: -0.012em; }
+#about .about-copy > * { margin-block: 0; }
+@media (min-width: 1024px) { #about .section-shell { grid-template-columns: minmax(17rem, .72fr) minmax(0, 1.28fr); column-gap: clamp(3rem, 7vw, 7rem); } #about .about-copy { padding-top: .15rem; } }
+@media (max-width: 1023px) { #about .section-shell { gap: 2rem; } #about .about-copy { max-width: 100%; } }
+#education .section-shell { align-items: start; }
+#education .education-code-visual { margin-top: .15rem; max-width: 100%; }
+#education .section-shell > div:last-child { min-width: 0; }
+@media (min-width: 1024px) { #education .section-shell { grid-template-columns: minmax(19rem, .78fr) minmax(0, 1.22fr); column-gap: clamp(2.5rem, 4vw, 4.5rem); } }
