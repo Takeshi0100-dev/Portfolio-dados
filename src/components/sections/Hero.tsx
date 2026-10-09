@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, ChartNoAxesCombined } from "lucide-react";
 import { useLanguage } from "@/lib/language";
 import { LINKEDIN_URL } from "@/content/site";
 import { InteractiveWordmark } from "@/components/sections/InteractiveWordmark";
@@ -131,11 +131,22 @@ function HeroVisual() {
       </div>
 
       <div className="card-surface mt-4 flex items-center gap-4 p-4">
-        <div className="size-9 rounded-md border border-border bg-surface-raised" />
-        <div className="flex-1 space-y-2">
-          <div className="h-1.5 w-2/3 rounded-full bg-border-strong" />
-          <div className="h-1.5 w-1/3 rounded-full bg-primary/50" />
+        <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 text-primary">
+          <ChartNoAxesCombined className="size-5" />
         </div>
+        <div className="min-w-0 flex-1">
+          <p className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-primary">
+            {useLanguage().lang === "pt" ? "Do dado à decisão" : "From data to decisions"}
+          </p>
+          <p className="mt-1 text-sm font-medium text-foreground">
+            {useLanguage().lang === "pt"
+              ? "Indicadores claros, soluções práticas"
+              : "Clear metrics, practical solutions"}
+          </p>
+        </div>
+        <span className="hidden rounded-full border border-border px-2 py-1 font-mono text-[0.55rem] tracking-wider text-muted-foreground sm:inline">
+          BI / DATA
+        </span>
       </div>
     </div>
   );
