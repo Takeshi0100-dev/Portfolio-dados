@@ -11,10 +11,10 @@ export function Hero() {
       id="hero"
       className="relative flex min-h-[88svh] items-center overflow-hidden pb-16 pt-24 sm:min-h-[92vh] sm:pb-20 sm:pt-28 md:min-h-screen md:pt-32"
     >
-      <div aria-hidden className="grid-backdrop pointer-events-none absolute inset-0" />
+      <div aria-hidden className="grid-backdrop hero-grid-motion pointer-events-none absolute inset-0" />
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]"
+        className="hero-ambient-motion pointer-events-none absolute -top-40 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]"
       />
 
       <div className="section-shell relative">
@@ -91,7 +91,7 @@ function HeroVisual() {
       className="relative hidden animate-fade-in lg:block"
       style={{ animationDelay: "520ms", animationFillMode: "backwards" }}
     >
-      <div className="card-surface soft-glow p-6">
+      <div className="card-surface hero-panel-motion soft-glow p-6">
         <div className="flex items-center justify-between">
           <span className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted-foreground">
             pipeline
@@ -131,7 +131,7 @@ function HeroVisual() {
         </div>
       </div>
 
-      <div className="card-surface mt-4 flex items-center gap-4 p-4">
+      <div className="card-surface hero-lower-card mt-4 flex items-center gap-4 p-4">
         <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 text-primary">
           <ChartNoAxesCombined className="size-5" />
         </div>
