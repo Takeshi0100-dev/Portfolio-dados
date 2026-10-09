@@ -434,3 +434,24 @@ section[id] h2 { animation: heading-glow 7s ease-in-out infinite; }
 @media (max-width: 1023px) {
   #education .education-code-visual { transform: none; }
 }
+
+
+/* Restore the Education terminal's sequential typing loop. */
+@keyframes terminal-type-loop {
+  0% { width: 0; border-right-color: var(--primary); }
+  38%, 72% { width: var(--typed-width, 100%); border-right-color: var(--primary); }
+  82%, 100% { width: var(--typed-width, 100%); border-right-color: transparent; }
+}
+.education-code-lines .education-code-typed {
+  animation-name: terminal-type-loop, terminal-caret;
+  animation-duration: 6.8s, .75s;
+  animation-timing-function: steps(34, end), step-end;
+  animation-iteration-count: infinite, infinite;
+  animation-fill-mode: both, both;
+}
+.education-code-lines .education-code-line.line-one .education-code-typed { animation-delay: 0s, 0s; }
+.education-code-lines .education-code-line.line-two .education-code-typed { animation-delay: 1.55s, 1.55s; }
+.education-code-lines .education-code-line.line-three .education-code-typed { animation-delay: 3.25s, 3.25s; }
+@media (prefers-reduced-motion: reduce) {
+  .education-code-lines .education-code-typed { width: auto !important; animation: none !important; border-right: 0; }
+}
