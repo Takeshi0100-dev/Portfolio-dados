@@ -82,6 +82,7 @@ export function Hero() {
 }
 
 function HeroVisual() {
+  const { lang } = useLanguage();
   const bars = [38, 56, 44, 72, 60, 88, 76];
 
   return (
@@ -136,10 +137,10 @@ function HeroVisual() {
         </div>
         <div className="min-w-0 flex-1">
           <p className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-primary">
-            {useLanguage().lang === "pt" ? "Do dado à decisão" : "From data to decisions"}
+            {lang === "pt" ? "Do dado à decisão" : "From data to decisions"}
           </p>
           <p className="mt-1 text-sm font-medium text-foreground">
-            {useLanguage().lang === "pt"
+            {lang === "pt"
               ? "Indicadores claros, soluções práticas"
               : "Clear metrics, practical solutions"}
           </p>
