@@ -5,7 +5,7 @@ import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { useLanguage } from "@/lib/language";
 import { projects } from "@/content/site";
-import { ProjectArtwork } from "@/components/sections/ProjectArtwork";
+import { ProjectPreviewCarousel } from "@/components/sections/ProjectPreviewCarousel";
 
 export function Projects() {
   const { lang, t } = useLanguage();
@@ -42,7 +42,7 @@ export function Projects() {
             <article className="project-card project-card-featured card-surface group mt-8 overflow-hidden border-primary/25">
               <div className="grid lg:grid-cols-[1.08fr_0.92fr]">
                 <div className="project-cover-frame project-cover-featured relative aspect-[16/10] overflow-hidden border-b border-border lg:aspect-auto lg:min-h-[25rem] lg:border-b-0 lg:border-r">
-                  <ProjectArtwork slug={featured.slug} lang={lang} title={`${featured.name[lang]} — ${t.projects.title}`} />
+                  <ProjectPreviewCarousel slug={featured.slug} lang={lang} title={`${featured.name[lang]} — ${t.projects.title}`} featured />
                   <span className="project-image-label">{lang === "pt" ? "CASE EM DESTAQUE" : "FEATURED CASE"}</span>
                 </div>
 
@@ -122,7 +122,7 @@ export function Projects() {
                 <Reveal key={project.slug} delay={index * 90}>
                 <article className="project-card project-card-secondary card-surface group h-full overflow-hidden">
                   <div className="project-cover-frame project-cover-secondary relative aspect-[16/9] overflow-hidden border-b border-border">
-                    <ProjectArtwork slug={project.slug} lang={lang} title={`${project.name[lang]} — ${t.projects.title}`} />
+                    <ProjectPreviewCarousel slug={project.slug} lang={lang} title={`${project.name[lang]} — ${t.projects.title}`} />
                     <span className="project-image-label">{projectType(project.slug)}</span>
                   </div>
                   <div className="flex h-full flex-col gap-4 p-5 sm:p-6">
