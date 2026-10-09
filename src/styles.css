@@ -378,3 +378,14 @@ section[id] h2 { animation: heading-glow 7s ease-in-out infinite; }
     margin-top: 0;
   }
 }
+
+
+/* Place the entire left education block above the right-side degree card */
+#education .section-shell > div:first-child {
+  margin-top: -1.5rem;
+}
+@media (max-width: 1023px) {
+  #education .section-shell > div:first-child {
+    margin-top: 0;
+  }
+}
