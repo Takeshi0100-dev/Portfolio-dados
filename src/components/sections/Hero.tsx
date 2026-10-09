@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/lib/language";
 import { LINKEDIN_URL } from "@/content/site";
+import { InteractiveWordmark } from "@/components/sections/InteractiveWordmark";
 
 export function Hero() {
   const { t } = useLanguage();
@@ -19,8 +20,10 @@ export function Hero() {
       <div className="section-shell relative">
         <div className="grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
+            <InteractiveWordmark />
+
             <p
-              className="eyebrow animate-fade-in"
+              className="eyebrow mt-5 animate-fade-in"
               style={{ animationDelay: "40ms", animationFillMode: "backwards" }}
             >
               {t.hero.role}
