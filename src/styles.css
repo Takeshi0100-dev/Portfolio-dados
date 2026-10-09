@@ -327,3 +327,17 @@ section[id] h2 { animation: heading-glow 7s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) {
   #education .education-code-visual { transform: none; }
 }
+
+
+/* Align the entire left education column with the top of the degree card */
+@media (min-width: 1024px) {
+  #education .section-shell > div:first-child { transform: translateY(-.5rem); }
+  #education .education-code-visual { transform: none; }
+}
+@media (max-width: 1023px) {
+  #education .section-shell > div:first-child { transform: none; }
+  #education .education-code-visual { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #education .section-shell > div:first-child { transform: none; }
+}
