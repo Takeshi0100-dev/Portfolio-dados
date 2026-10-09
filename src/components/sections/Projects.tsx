@@ -91,11 +91,13 @@ export function Projects() {
               <Fragment key={project.slug}>
                 {project.slug === "acompanhamento-vendas" && (
                   <Reveal delay={index * 90}>
-                    <article className="project-card card-surface flex h-full min-h-64 flex-col justify-between overflow-hidden border-primary/20 p-6 sm:p-8">
+                    <article className="project-card card-surface flex h-full min-h-64 flex-col justify-between gap-5 overflow-hidden border-primary/20 p-6 sm:p-8">
                       <div>
                         <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-primary">{lang === "pt" ? "Minha abordagem" : "My approach"}</p>
                         <h3 className="mt-4 max-w-sm text-2xl font-semibold leading-tight text-foreground">{lang === "pt" ? "Do problema à solução." : "From problem to solution."}</h3>
-                        <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">{lang === "pt" ? "Cada projeto começa entendendo a necessidade, organizando os dados e criando indicadores que ajudam a tomar decisões." : "Every project starts by understanding the need, organizing data, and building metrics that support better decisions."}</p>
+                        <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">{lang === "pt"
+                            ? "Cada projeto começa com uma pergunta: qual problema precisa ser resolvido? A partir daí, organizo e preparo os dados, estruturo as informações relevantes e desenvolvo indicadores que tornam os resultados mais claros. O objetivo é transformar dados dispersos em uma visão confiável do negócio, facilitar a identificação de padrões e apoiar decisões mais conscientes."
+                            : "Every project starts with a question: what problem needs to be solved? From there, I organize and prepare the data, structure relevant information, and develop metrics that make results clearer. The goal is to turn scattered data into a reliable view of the business, reveal useful patterns, and support more informed decisions."}</p>
                       </div>
                       <div className="mt-8 grid grid-cols-3 gap-2 border-t border-border pt-5">
                         <div className="space-y-2"><Database className="size-4 text-primary" /><p className="text-xs font-medium text-foreground">{lang === "pt" ? "Estruturar" : "Structure"}</p></div>
