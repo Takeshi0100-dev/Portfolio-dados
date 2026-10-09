@@ -537,3 +537,42 @@ section[id] h2 { animation: heading-glow 7s ease-in-out infinite; }
   .project-cover-frame > .project-cover-preview .project-preview-arrow.left-3 { left: .4rem !important; }
   .project-cover-frame > .project-cover-preview .project-preview-arrow.right-3 { right: .4rem !important; }
 }
+
+/* Education alignment: keep the animated card's lower edge aligned with the certificates link on desktop. */
+@media (min-width: 1024px) {
+  #education .section-shell {
+    align-items: stretch;
+  }
+  #education .section-shell > div:first-child {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    margin-top: 0;
+    gap: 0;
+  }
+  #education .section-shell > div:first-child > .max-w-2xl {
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+  #education .section-shell > div:first-child > div:last-child {
+    margin-top: auto;
+  }
+  #education .education-code-visual {
+    width: 100%;
+    margin-top: 0;
+    transform: translateY(1.5rem);
+  }
+}
+@media (max-width: 1023px) {
+  #education .section-shell > div:first-child {
+    gap: 1.5rem;
+    margin-top: 0;
+  }
+  #education .section-shell > div:first-child > div:last-child {
+    margin-top: 0;
+  }
+  #education .education-code-visual {
+    transform: none;
+  }
+}
+
