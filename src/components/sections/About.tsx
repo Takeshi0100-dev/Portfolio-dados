@@ -8,7 +8,7 @@ export function About() {
 
   return (
     <section id="about" className="scroll-mt-24 section-rule py-20 md:py-28">
-      <div className="section-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+      <div className="section-shell grid items-start gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <div className="space-y-8">
           <SectionHeading eyebrow={t.about.eyebrow} title={t.about.title} />
           <Reveal delay={80}>
@@ -23,10 +23,10 @@ export function About() {
             </div>
           </Reveal>
         </div>
-        <div className="space-y-5 lg:pt-1">
+        <div className="about-copy lg:pt-1">
           {t.about.paragraphs.map((p, i) => (
             <Reveal key={i} delay={i * 110}>
-              <p className="text-base leading-relaxed text-muted-foreground">{p}</p>
+              <p className="about-copy-paragraph">{p}</p>
             </Reveal>
           ))}
         </div>
