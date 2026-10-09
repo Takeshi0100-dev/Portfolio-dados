@@ -61,6 +61,8 @@ export const technologies = [
   { name: "Power Automate", featured: false },
   { name: "n8n", featured: false },
   { name: "pt:Automações com IA|en:AI automations", featured: false },
+  { name: "Python", featured: false },
+  { name: "Azure", featured: false },
 ];
 
 export const dict = {
