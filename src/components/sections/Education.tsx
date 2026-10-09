@@ -19,13 +19,13 @@ export function Education() {
                 <div className="education-code-top"><i /><i /><i /><span>data / automation</span></div>
                 <div className="education-code-body">
                   <div className="education-code-lines" aria-hidden="true">
-                    <span><b>01</b> <em>const</em> data = <strong>analyze()</strong>;</span>
-                    <span><b>02</b> <em>const</em> insight = <strong>transform(data)</strong>;</span>
-                    <span><b>03</b> <em>return</em> insight;</span>
+                    <span className="education-code-line line-one"><b>01</b> <span className="education-code-typed"><em>const</em> data = <strong>analyze()</strong>;</span></span>
+                    <span className="education-code-line line-two"><b>02</b> <span className="education-code-typed"><em>const</em> insight = <strong>transform(data)</strong>;</span></span>
+                    <span className="education-code-line line-three"><b>03</b> <span className="education-code-typed"><em>return</em> insight;</span></span>
                     <span className="education-code-cursor">▍</span>
                   </div>
                   <div className="education-code-divider" />
-                  <div className="education-code-bot"><Bot size={50} strokeWidth={1.4} /><span>AI + BI</span></div>
+                  <div className="education-code-bot"><div className="education-bot-orbit" aria-hidden="true" /><Bot className="education-bot-icon" size={50} strokeWidth={1.4} /><span>AI + BI</span><span className="education-bot-status">ONLINE</span></div>
                 </div>
                 <div className="education-code-footer"><Code2 size={14} /> <span>BUILD · LEARN · IMPROVE</span><span className="education-code-status">● {lang === "pt" ? "EM EVOLUÇÃO" : "IN PROGRESS"}</span></div>
               </div>
