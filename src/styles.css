@@ -455,3 +455,18 @@ section[id] h2 { animation: heading-glow 7s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) {
   .education-code-lines .education-code-typed { width: auto !important; animation: none !important; border-right: 0; }
 }
+
+
+/* Interactive screenshot previews on project covers */
+.project-cover-preview { isolation: isolate; background: radial-gradient(ellipse at center, #102748 0%, #050b16 75%); }
+.project-preview-image { animation: project-preview-in 320ms ease both; }
+.project-preview-arrow { position: absolute; z-index: 4; top: 50%; display: grid; width: 2.4rem; height: 2.4rem; place-items: center; transform: translateY(-50%); border: 1px solid oklch(1 0 0 / 18%); border-radius: 9999px; color: oklch(.96 .004 250); background: oklch(.12 .015 250 / 84%); backdrop-filter: blur(10px); box-shadow: 0 5px 24px oklch(0 0 0 / 25%); transition: background 180ms ease, border-color 180ms ease, transform 180ms ease; }
+.project-preview-arrow:hover { background: var(--primary); border-color: var(--primary); color: var(--primary-foreground); transform: translateY(-50%) scale(1.06); }
+.project-preview-arrow:focus-visible, .project-preview-dot:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+.project-preview-counter { position: absolute; z-index: 4; top: .75rem; right: .75rem; display: inline-flex; align-items: center; gap: .35rem; border: 1px solid oklch(1 0 0 / 15%); border-radius: 9999px; padding: .35rem .55rem; background: oklch(.12 .015 250 / 82%); color: oklch(.93 .01 250); font: .65rem var(--font-mono); backdrop-filter: blur(10px); }
+.project-preview-dots { position: absolute; z-index: 4; left: 50%; bottom: .75rem; display: flex; align-items: center; gap: .4rem; transform: translateX(-50%); border: 1px solid oklch(1 0 0 / 12%); border-radius: 9999px; padding: .4rem .55rem; background: oklch(.12 .015 250 / 82%); backdrop-filter: blur(10px); }
+.project-preview-dot { width: .38rem; height: .38rem; border-radius: 9999px; background: oklch(.65 .02 250 / 70%); transition: width 180ms ease, background 180ms ease; }
+.project-preview-dot.is-active { width: 1rem; background: #38bdf8; }
+@keyframes project-preview-in { from { opacity: .45; transform: scale(.99); } to { opacity: 1; transform: scale(1); } }
+@media (max-width: 420px) { .project-preview-arrow { width: 2rem; height: 2rem; } .project-preview-arrow.left-3 { left: .45rem; } .project-preview-arrow.right-3 { right: .45rem; } }
+@media (prefers-reduced-motion: reduce) { .project-preview-image { animation: none; } .project-preview-arrow, .project-preview-dot { transition: none; } }
