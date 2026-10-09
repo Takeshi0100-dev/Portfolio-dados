@@ -341,3 +341,24 @@ section[id] h2 { animation: heading-glow 7s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) {
   #education .section-shell > div:first-child { transform: none; }
 }
+
+
+/* Final responsive education alignment: lift the full left column at every viewport */
+#education .section-shell > div:first-child {
+  transform: translateY(-.5rem);
+}
+#education .education-code-visual {
+  margin-top: 0;
+  transform: none;
+}
+@media (max-width: 640px) {
+  #education .section-shell > div:first-child {
+    transform: translateY(-.25rem);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #education .section-shell > div:first-child,
+  #education .education-code-visual {
+    transform: none;
+  }
+}
