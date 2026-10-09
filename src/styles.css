@@ -317,43 +317,48 @@ section[id] h2 { animation: heading-glow 7s ease-in-out infinite; }
 @media (min-width: 1024px) { #education .section-shell { grid-template-columns: minmax(19rem, .78fr) minmax(0, 1.22fr); column-gap: clamp(2.5rem, 4vw, 4.5rem); } }
 
 
-/* Tighten the education heading-to-terminal gap so the left panel sits higher */
-#education .section-shell > div:first-child { gap: 1.15rem; }
-#education .section-shell > div:first-child > .space-y-8 { gap: 1.15rem; }
-#education .education-code-visual { margin-top: 0; transform: translateY(-.5rem); }
-@media (min-width: 1024px) {
-  #education .education-code-visual { transform: translateY(-.85rem); }
-}
-@media (prefers-reduced-motion: reduce) {
-  #education .education-code-visual { transform: none; }
-}
 
-
-/* Align the entire left education column with the top of the degree card */
-@media (min-width: 1024px) {
-  #education .section-shell > div:first-child { transform: translateY(-.5rem); }
-  #education .education-code-visual { transform: none; }
+/* Education layout: both columns share the same top baseline at every viewport.
+   Keep the heading and terminal grouped naturally; avoid compensating transforms. */
+#education .section-shell {
+  align-items: start;
 }
-@media (max-width: 1023px) {
-  #education .section-shell > div:first-child { transform: none; }
-  #education .education-code-visual { transform: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  #education .section-shell > div:first-child { transform: none; }
-}
-
-
-/* Final responsive education alignment: lift the full left column at every viewport */
 #education .section-shell > div:first-child {
-  transform: translateY(-.5rem);
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transform: none;
 }
 #education .education-code-visual {
+  width: 100%;
+  max-width: 100%;
   margin-top: 0;
   transform: none;
 }
+#education .section-shell > div:last-child {
+  align-self: start;
+  min-width: 0;
+}
+@media (max-width: 1023px) {
+  #education .section-shell {
+    align-items: stretch;
+    gap: 2rem;
+  }
+  #education .section-shell > div:first-child,
+  #education .section-shell > div:last-child {
+    transform: none;
+  }
+  #education .education-code-visual {
+    max-width: 32rem;
+  }
+}
 @media (max-width: 640px) {
   #education .section-shell > div:first-child {
-    transform: translateY(-.25rem);
+    gap: 1.25rem;
+  }
+  #education .education-code-visual {
+    max-width: 100%;
   }
 }
 @media (prefers-reduced-motion: reduce) {
