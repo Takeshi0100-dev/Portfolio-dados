@@ -587,3 +587,42 @@ section[id] h2 { animation: heading-glow 7s ease-in-out infinite; }
   #education .education-code-visual { max-width: 32rem; }
 }
 
+/* Final alignment: align the terminal footer text with the certificates link row. */
+@media (min-width: 1024px) {
+  #education .section-shell {
+    align-items: stretch;
+  }
+
+  #education .section-shell > div:first-child {
+    justify-content: space-between;
+    min-height: 100%;
+  }
+
+  /* Tailwind's space-y-8 adds margins that otherwise defeat space-between. */
+  #education .section-shell > div:first-child > * {
+    margin-block-start: 0;
+  }
+
+  #education .section-shell > div:first-child > div:last-child {
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+
+  #education .section-shell > div:first-child > div:last-child > .education-code-visual {
+    margin: 0;
+    transform: none;
+  }
+
+  #education .section-shell > div:last-child {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  /* Push the entire CTA Reveal row to the same lower edge as the terminal. */
+  #education .section-shell > div:last-child > div:last-child {
+    margin-top: auto;
+    padding-top: 1.5rem;
+  }
+}
+
