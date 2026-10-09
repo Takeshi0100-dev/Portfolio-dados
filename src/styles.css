@@ -286,3 +286,19 @@ section[id] h2 { animation: heading-glow 7s ease-in-out infinite; }
   .education-code-window, .education-code-top i, .education-code-typed, .education-code-cursor, .education-bot-icon, .education-bot-orbit, .education-bot-status { animation: none !important; }
   .education-code-typed { width: auto; border-right: 0; }
 }
+
+
+/* Fix typing animation specificity: keep each code line hidden until its turn,
+   then reveal characters in sequence rather than hiding the entire line. */
+.education-code-lines .education-code-line { animation: none; opacity: 1; }
+.education-code-lines .education-code-typed { display: inline-block; flex: 0 1 auto; width: 0; max-width: none; overflow: hidden; vertical-align: bottom; white-space: nowrap; border-right: 1px solid var(--primary); animation-name: terminal-type, terminal-caret; animation-duration: 1.35s, .75s; animation-timing-function: steps(34, end), step-end; animation-fill-mode: forwards, forwards; }
+.education-code-lines .education-code-line.line-one .education-code-typed { animation-delay: .55s, .55s; }
+.education-code-lines .education-code-line.line-two .education-code-typed { animation-delay: 2.15s, 2.15s; }
+.education-code-lines .education-code-line.line-three .education-code-typed { animation-delay: 3.85s, 3.85s; }
+@keyframes terminal-type { from { width: 0; } to { width: var(--typed-width, 100%); } }
+.education-code-lines .line-one .education-code-typed { --typed-width: 14ch; }
+.education-code-lines .line-two .education-code-typed { --typed-width: 25ch; }
+.education-code-lines .line-three .education-code-typed { --typed-width: 15ch; }
+@media (prefers-reduced-motion: reduce) {
+  .education-code-lines .education-code-typed { width: auto !important; animation: none !important; border-right: 0; }
+}
