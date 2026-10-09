@@ -251,3 +251,38 @@ section[id] h2 { animation: heading-glow 7s ease-in-out infinite; }
   .education-code-lines span { animation: none !important; }
   .education-code-cursor { animation: none !important; }
 }
+
+
+/* Living terminal: sequential typing and a softly animated bot */
+.education-code-window { animation: education-terminal-float 6.5s ease-in-out infinite; transform-origin: 50% 60%; }
+.education-code-top i { animation: terminal-lights 3.2s ease-in-out infinite; }
+.education-code-top i:nth-child(2) { animation-delay: .35s; }
+.education-code-top i:nth-child(3) { animation-delay: .7s; }
+.education-code-lines { gap: .85rem; }
+.education-code-line { display: flex; align-items: center; min-height: 1rem; width: 100%; }
+.education-code-line > b { flex: 0 0 1.2rem; }
+.education-code-typed { display: inline-block; overflow: hidden; width: 0; max-width: max-content; white-space: nowrap; border-right: 1px solid transparent; animation: terminal-type 1.35s steps(34, end) forwards, terminal-caret .75s step-end 2; }
+.education-code-line.line-one .education-code-typed { animation-delay: .55s, .55s; }
+.education-code-line.line-two .education-code-typed { animation-delay: 2.05s, 2.05s; }
+.education-code-line.line-three .education-code-typed { animation-delay: 3.85s, 3.85s; }
+.education-code-cursor { display: inline-block; margin-left: 1.2rem; animation: terminal-prompt-blink 1s steps(2, start) infinite; }
+.education-code-bot { position: relative; min-height: 6rem; justify-content: center; }
+.education-bot-icon { position: relative; z-index: 1; filter: drop-shadow(0 0 0 color-mix(in oklab, var(--primary) 0%, transparent)); animation: bot-hover 3.4s ease-in-out infinite, bot-glow 3.4s ease-in-out infinite; }
+.education-bot-orbit { position: absolute; width: 4.5rem; height: 4.5rem; border: 1px dashed color-mix(in oklab, var(--primary) 32%, transparent); border-radius: 50%; animation: bot-orbit 12s linear infinite; }
+.education-bot-orbit::before, .education-bot-orbit::after { content: ""; position: absolute; width: .3rem; height: .3rem; border-radius: 50%; background: var(--primary); box-shadow: 0 0 10px color-mix(in oklab, var(--primary) 65%, transparent); }
+.education-bot-orbit::before { top: .45rem; left: .5rem; }
+.education-bot-orbit::after { right: .2rem; bottom: 1rem; }
+.education-bot-status { margin-top: -.1rem; color: oklch(.76 .12 170) !important; font-size: .48rem !important; letter-spacing: .12em; animation: bot-status 2.5s ease-in-out infinite; }
+@keyframes terminal-type { from { width: 0; border-right-color: var(--primary); } 95% { border-right-color: var(--primary); } to { width: 100%; border-right-color: transparent; } }
+@keyframes terminal-caret { 0%, 100% { border-right-color: var(--primary); } 50% { border-right-color: transparent; } }
+@keyframes terminal-prompt-blink { to { opacity: .15; } }
+@keyframes education-terminal-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes terminal-lights { 0%, 100% { opacity: .45; } 50% { opacity: 1; background: var(--primary); } }
+@keyframes bot-hover { 0%, 100% { transform: translateY(0) rotate(0); } 35% { transform: translateY(-4px) rotate(-2deg); } 70% { transform: translateY(-1px) rotate(2deg); } }
+@keyframes bot-glow { 0%, 100% { filter: drop-shadow(0 0 2px color-mix(in oklab, var(--primary) 15%, transparent)); } 50% { filter: drop-shadow(0 0 9px color-mix(in oklab, var(--primary) 42%, transparent)); } }
+@keyframes bot-orbit { to { transform: rotate(360deg); } }
+@keyframes bot-status { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .education-code-window, .education-code-top i, .education-code-typed, .education-code-cursor, .education-bot-icon, .education-bot-orbit, .education-bot-status { animation: none !important; }
+  .education-code-typed { width: auto; border-right: 0; }
+}
